@@ -1,15 +1,18 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Arimo, Bitcount_Ink } from "next/font/google";
+
 import "./globals.css";
+import Link from "next/link";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const bodyFont = Arimo({
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  variable: "--body-font",
 });
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const headingFont = Bitcount_Ink({
   subsets: ["latin"],
+  variable: "--heading-font",
+  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -21,9 +24,25 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${bodyFont.className} ${headingFont.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <ul>
+          <li>
+            <Link href="/">Home</Link>
+          </li>
+
+          <li>
+            <Link href="/3d-models">3D Models</Link>
+          </li>
+
+          <li>
+            <Link href="/about">About</Link>
+          </li>
+        </ul>
+
+        {children}
+      </body>
     </html>
   );
 }
