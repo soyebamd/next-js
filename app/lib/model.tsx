@@ -23,3 +23,11 @@ export async function getModelById(id: string | number): Promise<Model> {
 
   return getSingleEntry;
 }
+
+export async function getModelByCategorySlug(slug: string): Promise<Model[]> {
+  const categoryModels = modelsData.filter(
+    (item: Model) => item.category === slug,
+  );
+
+  return categoryModels;
+}

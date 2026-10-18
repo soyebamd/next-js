@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Arimo, Bitcount_Ink } from "next/font/google";
 
+import Navigation from "@/app/components/navigation";
+
 import "./globals.css";
-import Link from "next/link";
 
 const bodyFont = Arimo({
   weight: ["400", "500", "600", "700"],
@@ -26,22 +27,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${bodyFont.className} ${headingFont.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
-        <ul>
-          <li>
-            <Link href="/">Home</Link>
-          </li>
-
-          <li>
-            <Link href="/3d-models">3D Models</Link>
-          </li>
-
-          <li>
-            <Link href="/about">About</Link>
-          </li>
-        </ul>
-
-        {children}
+      <body className="min-h-full flex flex-col ">
+        <Navigation />
+        <div className="w-full max-w-[1200px] mx-auto gap-x-4">{children}</div>
       </body>
     </html>
   );
